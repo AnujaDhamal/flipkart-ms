@@ -34,7 +34,7 @@ pipeline {
         stage('Building & Tag Docker Image') {
             steps {
                 echo 'Starting Building Docker Image'
-                sh "docker build -t satyam88/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
+                sh "docker build -t anuja01/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
                 sh "docker build -t flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
                 echo 'Completed Building Docker Image'
             }
@@ -50,9 +50,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
-                        sh "docker login docker.io -u satyam88 -p ${dockerhubCred}"
+                        sh "docker login docker.io -u anuja01 -p ${dockerhubCred}"
                         echo "Push Docker Image to DockerHub: In Progress"
-                        sh "docker push satyam88/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}"
+                        sh "docker push anuja01/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}"
                         echo "Push Docker Image to DockerHub: Completed"
                     }
                 }
